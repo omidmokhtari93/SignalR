@@ -90,9 +90,9 @@
         margin-bottom: 5px;
         padding: 5px;
     }
+        .form-container .list-group .list-group-item .alert em { font-size: 8pt; }
     .form-container h6{ margin-bottom: 0;}
 </style>
-<button onclick="">st</button>
 <button class="btn open-button" onclick="$('#myForm').show();">Chat</button>
 
 <div class="chat-popup" id="myForm">
@@ -104,6 +104,10 @@
         </h6>
         <div class="list-group">
             <div class="list-group-item" id="msgArea">
+                <div class="alert alert-info">
+                    <em class="d-block text-right">Omid - 11:35</em>
+                    salam
+                </div>
             </div>
         </div>
         <input placeholder="Type message.." name="msg" rows="1" required />
@@ -113,20 +117,17 @@
 </div>
     
 <script>
- 
     $(function() {
-        var hub = $.connection.SendMessage, //set hub with the server side class
-            $messageBox = $("#msgArea");
-
+        var hub = $.connection.SendMessage;
         hub.client.usersConnected =
-            function(numUsers) { //this instanciate the usersConnected function receiving the numUsers parameter which is the number of users connected
-                $(".badge").text(numUsers); //show the number of users connected inside a div
+            function(numUsers) {
+                $(".badge").text(numUsers);
             };
-        hub.client.messageSended = function(usrname ,msg) { //this instanciate the shapeMoved function receiving x, y 
-            $("#msgArea").append('<div class="alert alert-info">'+ msg+'</div>'); //this moves the shape in the clients to the coords x, y 
-        }; 
+        hub.client.messageSended = function(usrname ,msg) {
+            $("#msgArea").append('<div class="alert alert-secondary">'+ msg+'</div>');
+        };
 
-        $.connection.hub.start().done(function () { //when the connection is ready, we going to make the shape draggable
+        $.connection.hub.start().done(function () {
             $(document).on('keypress', function(e) {
                 if (e.keyCode === 13 && $("input[name=msg]").val() !== '') {
                     hub.server.sendMessage('s', $("input[name=msg]").val());  
