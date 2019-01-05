@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <!--<script src="Scripts/jquery-1.6.4.js"></script>-->
+    <script src="Scripts/jquery.signalR-2.4.0.js"></script>
+    <script src="signalr/hubs"></script>
+    <style>
+        p{ margin: 3px;background: brown;color: aliceblue;padding: 3px;}
+    </style>
+    <title></title>
+</head>
+<body>
+<div style="padding: 3px;">
+    Online Person : <label id="count"></label>
+</div>
+<div style="padding: 3px;">
+    Type your name : <input id="username"/>
+</div>
+<input type="text" id="msgBox"/><br/>
+<button type="button" id="btnSend" style="margin: 3px;">Send</button>
+<div id="msgArea" style="width: 100px; padding: 3px;">
+</div>
+<script>
+ 
+    $(function() {
+        var hub = $.connection.SendMessage, //set hub with the server side class
+            $messageBox = $("#msgArea");
+
+        hub.client.usersConnected =
+            function(numUsers) { //this instanciate the usersConnected function receiving the numUsers parameter which is the number of users connected
+                $("#count").text(numUsers); //show the number of users connected inside a div
+            };
+        hub.client.messageSended = function(usrname ,msg) { //this instanciate the shapeMoved function receiving x, y 
+            $("#msgArea").append('<p>'+ usrname +  ' : '+ msg + '</p>'); //this moves the shape in the clients to the coords x, y 
+        }; 
+
+        $.connection.hub.start().done(function () { //when the connection is ready, we going to make the shape draggable
+            $('#btnSend').on('click', function() {
+                hub.server.sendMessage($("#username").val(), $("#msgBox").val());  
+                $("#msgArea").append($('<p>' + $("#username").val() + ' : ' + $("#msgBox").val() + '</p>'));
+                $("#username").attr('disabled', 'disabled');
+                $("#msgBox").val('');
+            });
+        });
+    });
+</script>
+</body>
+</html>
