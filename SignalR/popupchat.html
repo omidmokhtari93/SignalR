@@ -102,12 +102,9 @@
                 <label class="badge badge-info"></label>
             </a>
         </h6>
+        <input class="form-control" name="uname" placeholder="Type your name.."/>
         <div class="list-group">
             <div class="list-group-item" id="msgArea">
-                <div class="alert alert-info">
-                    <em class="d-block text-right">Omid - 11:35</em>
-                    salam
-                </div>
             </div>
         </div>
         <input placeholder="Type message.." name="msg" rows="1" required />
@@ -123,25 +120,30 @@
             function(numUsers) {
                 $(".badge").text(numUsers);
             };
-        hub.client.messageSended = function(usrname ,msg) {
-            $("#msgArea").append('<div class="alert alert-secondary">'+ msg+'</div>');
+        hub.client.messageSended = function(usrname ,msg ,t) {
+            $("#msgArea").append(' <div class="alert alert-secondary"><em class="d-block text-right">' + usrname + ' - ' + t + '</em>' + msg + '</div>');
         };
 
         $.connection.hub.start().done(function () {
             $(document).on('keypress', function(e) {
                 if (e.keyCode === 13 && $("input[name=msg]").val() !== '') {
-                    hub.server.sendMessage('s', $("input[name=msg]").val());  
-                    $("#msgArea").append('<div class="alert alert-info">' + $("input[name=msg]").val() + '</div>');
-                    $("input[name=msg]").val('');
+                    send();
                 }
             });
             $('#btnSend').on('click', function() {
-                hub.server.sendMessage('s', $("input[name=msg]").val());  
-                $("#msgArea").append('<div class="alert alert-info">' + $("input[name=msg]").val() + '</div>');
-                $("input[name=msg]").val('');
+                send();
             });
+            function send() {
+                hub.server.sendMessage($("input[name=uname]").val(), $("input[name=msg]").val(),time());
+                $("#msgArea").append(' <div class="alert alert-info"><em class="d-block text-right">' + $("input[name=uname]").val() + ' - ' + time() + '</em>' + $("input[name=msg]").val() + '</div>');
+                $("input[name=msg]").val('');
+            }
         });
     });
+    function time() {
+        var dt = new Date();
+        return  dt.getHours() + ":" + dt.getMinutes();
+    }
 </script>
 </body>
 </html>
