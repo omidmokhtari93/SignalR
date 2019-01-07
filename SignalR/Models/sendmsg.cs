@@ -15,9 +15,9 @@ namespace SignalR.Models
     [HubName("SendMessage")]   //this is for use a name to use in the client
     public class SendMessageHub : Hub
     {
-        public void SendMessage(string usrname ,string msg , string time) // this method will be called from the client, when the user drag/move the shape
+        public void SendMessage(string usrname ,string msg ) // this method will be called from the client, when the user drag/move the shape
         {
-            Clients.Others.messageSended(usrname,msg ,time); // this method will send the coord x, y to the other users but the user draging the shape
+            Clients.Others.messageSended(usrname,msg , DateTime.Now.ToString("HH:mm")); // this method will send the coord x, y to the other users but the user draging the shape
         }
 
         public override Task OnConnected() //override OnConnect, OnReconnected and OnDisconnected to know if a user is connected or disconnected

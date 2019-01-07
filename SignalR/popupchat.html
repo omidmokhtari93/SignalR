@@ -134,16 +134,20 @@
                 send();
             });
             function send() {
-                hub.server.sendMessage($("input[name=uname]").val(), $("input[name=msg]").val(),time());
-                $("#msgArea").append(' <div class="alert alert-info"><em class="d-block text-right">' + $("input[name=uname]").val() + ' - ' + time() + '</em>' + $("input[name=msg]").val() + '</div>');
-                $("input[name=msg]").val('');
+                $.ajax({
+                    url: 'datetime.asmx/GetTime',
+                    type: "post",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (tme) {
+                        $("#msgArea").append(' <div class="alert alert-info"><em class="d-block text-right">' + $("input[name=uname]").val() + ' - ' + tme.d + '</em>' + $("input[name=msg]").val() + '</div>');
+                        hub.server.sendMessage($("input[name=uname]").val(), $("input[name=msg]").val());
+                        $("input[name=msg]").val('');
+                    }
+                });
             }
         });
     });
-    function time() {
-        var dt = new Date();
-        return  dt.getHours() + ":" + dt.getMinutes();
-    }
 </script>
 </body>
 </html>
