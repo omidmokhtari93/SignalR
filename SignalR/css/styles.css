@@ -1,0 +1,159 @@
+﻿@charset "UTF-8";
+
+@font-face {
+    font-family: 'sans';
+    src: url('../fonts/sans/IRANSans.woff2')
+}
+
+@font-face {
+    font-family: 'light_sans';
+    src: url('../fonts/sans/IRANSansWeb_Light.woff2')
+}
+
+@font-face {
+    font-family: 'medium_sans';
+    src: url('../fonts/sans/IRANSansWeb_Medium.woff2')
+}
+
+@font-face {
+    font-family: 'bold_sans';
+    src: url('../fonts/sans/IRANSansWeb_Bold.woff2')
+}
+
+.medium-sans {
+    font-family: medium_sans !important;
+    font-size: 12pt;
+}
+
+.bold-sans {
+    font-family: bold_sans !important;
+    font-size: 12pt;
+}
+
+.light-sans {
+    font-family: sans !important;
+    font-size: 12pt;
+}
+
+.sans {
+    font-family: sans !important;
+    font-size: 12pt;
+}
+
+.sans-small {
+    font-family: sans !important;
+    font-size: 10pt;
+}
+
+.sans-xsmall {
+    font-family: sans !important;
+    font-size: 9pt;
+}
+
+.sans-xxsmall {
+    font-family: sans !important;
+    font-size: 8pt;
+}
+
+
+.ltr {
+    direction: ltr !important;
+}
+
+.rtl {
+    direction: rtl !important;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
+input, textarea, select {
+    text-align: right;
+    direction: rtl;
+}
+
+
+@media screen and (max-width: 1027px) {
+    em {
+        font-size: 20pt !important;
+    }
+
+    .form-container .list-group .list-group-item .alert {
+        padding: 10px 10px 45px 10px !important;
+        min-width: 330px !important;
+        border-radius: 25px !important;
+        font-size: 30pt !important;
+    }
+
+    .chat-popup {
+        width: 100%;
+        border: 3px solid #f1f1f1;
+        z-index: 9;
+        height: 100%;
+    }
+
+    .sans {
+        font-size: 35pt !important;
+    }
+
+    .login * {
+        font-size: 35pt !important;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .chat-popup {
+        width: 40%;
+        border: 3px solid #f1f1f1;
+        z-index: 9;
+        height: 100%;
+    }
+}
+
+.form-container {
+    padding: 10px;
+    background-color: white;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+.form-container .list-group .list-group-item {
+    height: 500px;
+    overflow-y: auto;
+    padding: 10px;
+    position: relative;
+}
+
+    .form-container .list-group .list-group-item .alert {
+        margin-bottom: 5px;
+        padding: 10px 10px 25px 10px;
+        border-radius: 15px;
+    }
+
+        .form-container .list-group .list-group-item .alert em {
+            font-size: 10pt;
+            position: absolute;
+            left: 5px;
+            bottom: 5px;
+        }
+
+.alert-info, .alert-secondary {
+    overflow-wrap: break-word;
+    min-width: 100px;
+}

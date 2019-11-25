@@ -17,7 +17,8 @@ namespace SignalR.Models
     {
         public void SendMessage(string usrname ,string msg ) // this method will be called from the client, when the user drag/move the shape
         {
-            Clients.Others.messageSended(usrname,msg , DateTime.Now.ToString("HH:mm")); // this method will send the coord x, y to the other users but the user draging the shape
+            Clients.Others.messageSended(usrname,msg , DateTime.Now.ToString("HH:mm")); 
+            // this method will send the coord x, y to the other users but the user draging the shape
         }
 
         public override Task OnConnected() //override OnConnect, OnReconnected and OnDisconnected to know if a user is connected or disconnected

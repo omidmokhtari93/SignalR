@@ -89,7 +89,18 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="chat.aspx" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\sans\IRANSans.woff2" />
+    <Content Include="fonts\sans\IRANSansWeb_Bold.woff2" />
+    <Content Include="fonts\sans\IRANSansWeb_Light.woff2" />
+    <Content Include="fonts\sans\IRANSansWeb_Medium.woff2" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\chat.bornatek.ir - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -98,19 +109,28 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\styles.css" />
     <Content Include="datetime.asmx" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
-    <Content Include="popupchat.html" />
-    <Content Include="Scripts\jquery-1.6.4.js" />
-    <Content Include="Scripts\jquery-1.6.4.min.js" />
-    <Content Include="Scripts\jquery.signalR-2.4.0.js" />
-    <Content Include="Scripts\jquery.signalR-2.4.0.min.js" />
+    <Content Include="js\jquery-3.3.1.min.js" />
+    <Content Include="js\jquery.signalR-2.4.0.js" />
+    <Content Include="js\jquery.signalR-2.4.0.min.js" />
+    <Content Include="js\validate.js" />
+    <Content Include="chat.html" />
+    <Content Include="validator.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="chat.aspx.cs">
+      <DependentUpon>chat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="chat.aspx.designer.cs">
+      <DependentUpon>chat.aspx</DependentUpon>
+    </Compile>
     <Compile Include="datetime.asmx.cs">
       <DependentUpon>datetime.asmx</DependentUpon>
       <SubType>Component</SubType>
